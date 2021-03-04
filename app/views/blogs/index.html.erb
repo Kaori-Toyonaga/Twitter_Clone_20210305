@@ -1,0 +1,20 @@
+<h2>今まで何言ったっけ？</h2>
+<% @blogs.each do |blog| %>
+<div class="container" class="card" >
+  <div class="row" class="card-body">
+    <h4 class="card-title"><%= blog.title %></h4>
+    <h6 class="card-title"><%= blog.timestamp %></h6>
+    <p class="card-text"><%= blog.content %></p>
+    <a class="card-link"><button type="button" class="btn btn-success">
+      <%= link_to '思い出す', blog_path(blog.id) %>
+    </button></a>
+    <a class="card-link"><button type="button" class="btn btn-warning">
+      <%= link_to "言いなおす", edit_blog_path(blog.id), data: { confirm: '本当に言いなおす？' } %>
+    </button></a>
+    <a class="card-link"><button type="button" class="btn btn-secondary">
+      <%= link_to '撤回する', blog_path(blog.id), method: :delete ,data: { confirm: '本当に撤回しますか？' } %>
+    </button></a>
+  </div>
+</div>
+<% end %>
+<p id="blank"><%= link_to 'また何か言ってみる', new_blog_path %></p>
